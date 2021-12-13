@@ -16,3 +16,4 @@ CMakeLists.txt.user
 /lib/libstvo.so
 *lib*
 *future-todo*
+.vscode
