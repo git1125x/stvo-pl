@@ -14,7 +14,7 @@ include_directories(${OpenCV2_INCLUDE_DIRS})
 add_subdirectory(3rdparty/line_descriptor)
 
 set(DEFAULT_HAS_MRPT ON)
-set(HAS_MRPT ${DEFAULT_HAS_MRPT} CACHE BOOL "Build the PointGrey Bumblebee2 SVO application that employs the MRPT library")
+#set(HAS_MRPT ${DEFAULT_HAS_MRPT} CACHE BOOL "Build the PointGrey Bumblebee2 SVO application that employs the MRPT library") #TODO: Make it work with MRPT
 
 SET(BUILD_SHARED_LIBS ON)
 SET(CMAKE_MODULE_PATH $ENV{CMAKE_MODULE_PATH})
@@ -26,10 +26,10 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/build)
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
 # MRPT library (optional, only with representation purposes)
-if(HAS_MRPT)
-    find_package(MRPT 1.9.9 REQUIRED opengl gui hwdrivers)
-    add_definitions(-DHAS_MRPT)
-endif()
+#if(HAS_MRPT)
+#    find_package(MRPT 1.9.9 REQUIRED opengl gui hwdrivers)
+#    add_definitions(-DHAS_MRPT)
+#endif()
 
 # YAML library
 FIND_PACKAGE(yaml-cpp REQUIRED CONFIG PATHS ${YAML_PATHS})
@@ -53,11 +53,11 @@ list(APPEND LINK_LIBS
 )
 
 # Set source files
-if(HAS_MRPT)
-list(APPEND SOURCEFILES
-  src/sceneRepresentation.cpp
-)
-endif()
+#if(HAS_MRPT)
+#list(APPEND SOURCEFILES
+#  src/sceneRepresentation.cpp
+#)
+#endif()
 
 list(APPEND SOURCEFILES
   src/auxiliar.cpp
@@ -84,9 +84,9 @@ add_library(stvo SHARED ${SOURCEFILES})
 
 target_link_libraries(stvo ${LINK_LIBS})
 
-if(HAS_MRPT)
-target_link_libraries(stvo ${MRPT_LIBS} ${MRPT_LIBRARIES})
-endif()
+#if(HAS_MRPT)
+#target_link_libraries(stvo ${MRPT_LIBS} ${MRPT_LIBRARIES})
+#endif()
 
 # Applications
 add_executable       ( imagesStVO app/imagesStVO.cpp )
